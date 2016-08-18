@@ -1,0 +1,50 @@
+**************************************************************************************
+* THIS IS A JQUERY PRIMER, INTENDED TO JUMPSTART SEAMFIX DEVELOPERS IN THE USAGE     *
+* OF THE JQUERY JAVASCRIPT (tinsrunning) LIBRARY. FOR MORE, PLEASE CONTACT AUTHOR 	 *
+* OF THIS PRIMER FOR CONCISE BOOK ON ITS USAGE.										 *
+* AUTHOR:BUSKY			
+
+* SEE BELOW FOR TIPS ON SEAMFIX'S SFSCRIPTS USAGE								     *
+**************************************************************************************
+
+- jQuery is a library used by Orbita, hence is available to all our pages.
+
+- jQuery calls are made like this: jQuery()
+
+- any function you want to be done upon load of a page, is called like this
+		<script type="text/javascript">
+		      jQuery(function() {
+		         	jQuery("#loadstatus").hide();
+		      });
+		</script>
+		
+- basic mthds for now are: hide(),show(),trim(string). See sample script above for implementation of hide()
+
+- you give ids to any element u want to control on the page, i.e tr,td,table,div,image, etc.
+
+- then you pass that id to jQuery like this: jQuery(#theId).callAMethod()
+
+- all submissions should pass through a javascript function.
+
+- before you call dosubmit in that javascript function, first call jQuery to hide() the element that was clicked. i.e
+	<td width="10%"  nowrap="nowrap" class="" onclick="jQuery('#pin2').hide();<portlet:namespace/>
+		doSubmit('<portlet:namespace/>Form','makePinPayment','')"><div id='pin2' class="sfNewButton">Make Payment</div></td>
+
+- for divs, just give them an id, then hide them upon load of the page as shown above. When a click is made, in your javascript
+function you can then show them, all with jQuery. This makes coding with divs easier in Dreamweaver as you can view them always.
+
+- function makePayment(){
+	jQuery('#mkpaymt').hide();
+	<portlet:namespace/>doSubmit('<portlet:namespace/>Form','makePinPayment','')
+	)
+
+==============================================================================================
+	
+- for any portlet you work on, you develop content of its help page, in addition to context sensitive help i.e via tooltips
+
+==============================================================================================
+
+- import <script src="<%=response.encodeURL(request.getContextPath()+ "/html/common/sfscripts.js")%>" type="text/javascript"></script>
+   for already prepared javascirpt validation functions. open the file to see what is available for use.
+
+=============================================================================================
