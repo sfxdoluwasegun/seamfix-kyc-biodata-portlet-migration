@@ -1,5 +1,5 @@
-<!-- Original:  Jonathan Feaster (http://www.archreality.com/) -->
-<!-- Based on: Gimpy CAPTCHA Project at Carnegie Mellon University (http://www.captcha.net/) -->
+//<!-- Original:  Jonathan Feaster (http://www.archreality.com/) -->
+//<!-- Based on: Gimpy CAPTCHA Project at Carnegie Mellon University (http://www.captcha.net/) -->
 
 var imgdir = "/cimg/"; // identify directory where captcha images are located
 var jfldid = "uword"; // identify word field id name
