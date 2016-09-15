@@ -71,7 +71,64 @@ public class BiodataManagerDataService extends KycDS {
 
 		String query = hql + extraHql;
 
-		Object o = dbService.getBySQL(Object.class, query, null);
+		Object o = null;
+		try {
+			o = dbService.getBySQL(Object.class, query, null);
+		} catch (Exception e) {
+			logger.error("An Error Occurred fetching the Data", e);
+		}
+		
+
+		if ((o != null) && (o instanceof ArrayList)) {
+
+			ArrayList<Object> arrObject = (ArrayList<Object>) o;
+
+			for (ListIterator l = arrObject.listIterator(); l.hasNext();) {
+				Object obj = l.next();
+				if (obj instanceof Object[]) {
+					Object[] arr = (Object[]) obj;
+					try {
+
+						SearchResult result = new SearchResult();
+						result.setCustomerName(arr[1].toString() + " " + arr[0].toString());
+						result.setPhoneNumber(arr[2].toString());
+						result.setUniqueId(arr[3].toString());
+						result.setRegistrationTimestamp((Timestamp) arr[4]);
+						result.setBasicDataId(((BigDecimal) arr[5]).longValue());
+						result.setSerialNumber(arr[6].toString());
+
+						searchResult.add(result);
+					} catch (Exception e) {
+						logger.error("Exception: ", e);
+					}
+				}
+			}
+
+		}
+
+		return searchResult;
+
+	}
+	
+	public List<SearchResult> getSomeTableContent( int pageSize) {
+
+		List<SearchResult> searchResult = new ArrayList<SearchResult>();
+
+		String hql = "SELECT s.firstname, s.surname, s.PHONE_NUMBER , s.UNIQUE_ID, s.RECEIPT_TIMESTAMP, s.id, s.SIM_SERIAL FROM biodata_demographics s WHERE s.id is not null ";
+
+		String extraHql = "";
+
+		extraHql += " AND rowNum <= " + pageSize + " ORDER BY s.RECEIPT_TIMESTAMP DESC ";
+
+		String query = hql + extraHql;
+
+		Object o = null;
+		try {
+			o = dbService.getBySQL(Object.class, query, null);
+		} catch (Exception e) {
+			logger.error("An Error Occurred fetching the Data", e);
+		}
+		
 
 		if ((o != null) && (o instanceof ArrayList)) {
 

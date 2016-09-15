@@ -3,11 +3,25 @@ package com.sf.kycmanager.portlet.biodata;
 import java.util.List;
 
 import com.sf.biocapture.entity.SmsActivationRequest;
+import com.sf.biocapture.pojos.SearchResult;
 import com.sf.lfa.core.InitialPortletState;
 
 public class BiodataManagerInitialState implements InitialPortletState {
 
+	private BiodataManagerDataService dataService = new BiodataManagerDataService();
+	
 	private Integer pageSize = 25;
+	
+	private List<SearchResult> data = null;
+
+	public BiodataManagerInitialState() {
+		super();
+		try {
+			data = dataService.getSomeTableContent(pageSize);
+		} catch (Exception e) {
+			
+		}
+	}
 
 	private List<SmsActivationRequest> biodata = null;
 

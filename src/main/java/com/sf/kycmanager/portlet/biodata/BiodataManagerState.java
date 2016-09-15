@@ -27,17 +27,29 @@ public class BiodataManagerState extends SfState {
 	private Map<String, String> demographics = null;
 
 	private List<SearchResult> biodata = null;
+	private List<SearchResult> data = null;
 
 	private List<Object[]> biodataObject = null;
 
 	private List<DemoObj> demographicsData = null;
+	
+	private BiodataManagerDataService dataService = new BiodataManagerDataService();
 
 	public BiodataManagerState() {
-
+		try {
+			data = dataService.getSomeTableContent(pageSize);
+		} catch (Exception e) {
+			
+		}
 	}
 
 	public BiodataManagerState(PortletRequest portletRequest) {
 		super();
+		try {
+			data = dataService.getSomeTableContent(pageSize);
+		} catch (Exception e) {
+			
+		}
 	}
 
 	public Integer getPageSize() {
@@ -134,6 +146,14 @@ public class BiodataManagerState extends SfState {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public List<SearchResult> getData() {
+		return data;
+	}
+
+	public void setData(List<SearchResult> data) {
+		this.data = data;
 	}
 
 	public Long getPk() {

@@ -51,7 +51,7 @@
 			<c:set var="biodataList" value="${portletState.biodata}" />
 		</c:when>
 		<c:otherwise>
-			<c:set var="biodataList" value="${portletState.initialState.biodata}" />
+			<c:set var="biodataList" value="${portletState.data}" />
 		</c:otherwise>
 	</c:choose>
         
