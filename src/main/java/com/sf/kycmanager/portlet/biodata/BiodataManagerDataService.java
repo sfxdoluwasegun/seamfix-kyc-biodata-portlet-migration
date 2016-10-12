@@ -53,11 +53,16 @@ public class BiodataManagerDataService extends KycDS {
                         if(searchParam.length < 2){
                             extraHql += " AND ((lower(s.firstname) like lower('%" + name + "%')) OR (lower(s.surname) like lower('%"+ name +"%')))";
                         }else{
-                            String name1 = searchParam[0];
-                            String name2 = searchParam[1];
-                            
-                            extraHql += " AND ((lower(s.firstname) like lower('%" + name1 + "%')) OR (lower(s.surname) like lower('%"+ name2 +"%'))) OR ((lower(s.firstname) like lower('%" + name2 + "%')) OR (lower(s.surname) like lower('%"+ name1 +"%')))";
-                            
+                        	int count = 0;
+                        	for(String param:searchParam){
+                        		if(count == 0){
+                        			extraHql += " AND ((lower(s.firstname) like lower('%" + param + "%')) OR (lower(s.surname) like lower('%"+ param +"%')))";
+                        		}
+                        		else{
+                        			extraHql += " OR ((lower(s.firstname) like lower('%" + param + "%')) OR (lower(s.surname) like lower('%"+ param +"%')))";
+                        		}
+                        		count++;
+                        	}
                         }
 			
 		}

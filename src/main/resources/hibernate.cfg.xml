@@ -5,15 +5,10 @@
 	<session-factory>
 		<property name="hibernate.connection.datasource">java:comp/env/jdbc/KycManagerServer</property>
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property> 
-		<property name="hibernate.default_schema">biocapture</property>
-
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		<property name="jdbc.batch_size">0</property>
 		<property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
 		<property name="hibernate.cache.use_query_cache">false</property>
-<!-- 		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
-		<property name="hibernate.cache.query_cache_factory">org.hibernate.cache.StandardQueryCacheFactory</property> -->
-
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">false</property>
 		<property name="use_sql_comments">false</property>
