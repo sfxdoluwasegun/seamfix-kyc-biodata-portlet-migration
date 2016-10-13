@@ -51,10 +51,12 @@ public class BiodataManagerDataService extends KycDS {
 		if (name != null && !name.trim().equals("")) {
                         String[] searchParam = name.split(" ");
                         if(searchParam.length < 2){
+                        	name= name.toLowerCase();
                             extraHql += " AND ((lower(s.firstname) like lower('%" + name + "%')) OR (lower(s.surname) like lower('%"+ name +"%')))";
                         }else{
                         	int count = 0;
                         	for(String param:searchParam){
+                        		param = param.toLowerCase();
                         		if(count == 0){
                         			extraHql += " AND ((lower(s.firstname) like lower('%" + param + "%')) OR (lower(s.surname) like lower('%"+ param +"%')))";
                         		}
