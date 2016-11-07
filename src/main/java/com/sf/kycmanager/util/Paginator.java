@@ -168,4 +168,10 @@ public class Paginator<T> extends NeemClazz implements PaginatedList, Serializab
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
+
+	@Override
+	public void setTargetPropertyFilename() {
+		// TODO Auto-generated method stub
+		
+	}
 }

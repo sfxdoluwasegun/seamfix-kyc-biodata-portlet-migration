@@ -29,4 +29,10 @@ public class StartupListener extends NeemClazz implements ServletContextListener
 		logger.debug("Goodbye KYC Manager");
 	}
 
+	@Override
+	public void setTargetPropertyFilename() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

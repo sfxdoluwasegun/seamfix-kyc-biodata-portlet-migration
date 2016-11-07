@@ -22,7 +22,7 @@
                                 </execution>
                         </executions>
                         <configuration>
-                                <autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
+                                <autoDeployDir>C:\SeamfixCodes\Liferay\liferay-portal-6.2-ce-ga4-kycmanager\deploy</autoDeployDir>
                                 <liferayVersion>6.2.1</liferayVersion>
                                 <pluginType>portlet</pluginType>
                         </configuration>
@@ -138,9 +138,8 @@
             </dependency>
             <dependency>
                     <groupId>com.nimworks</groupId>
-                    <artifactId>nw.orm-h4</artifactId>
-                    <version>3.1.3-Final</version>
-                    <type>jar</type>
+                    <artifactId>nw.orm</artifactId>
+                    <version>3.2.1</version>
             </dependency>
             <dependency>
                     <groupId>org.andromda</groupId>
@@ -188,6 +187,6 @@
 	</dependencies>
 	<properties>
 		<liferay.version>6.2.1</liferay.version>
-		<liferay.auto.deploy.dir>C:\DEV\DEVTOOLS\PortalFrameworks\LIFERAY\BLUE\Liferay-bundles\liferay-portal-6.2-ce-ga4-KYCManagerMTN\deploy</liferay.auto.deploy.dir>
+		<liferay.auto.deploy.dir>C:\SeamfixCodes\Liferay\liferay-portal-6.2-ce-ga4-kycmanager\deploy</liferay.auto.deploy.dir>
 	</properties>
 </project>
