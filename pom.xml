@@ -22,7 +22,7 @@
                                 </execution>
                         </executions>
                         <configuration>
-                                <autoDeployDir>C:\SeamfixCodes\Liferay\liferay-portal-6.2-ce-ga4-kycmanager\deploy</autoDeployDir>
+                                <autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
                                 <liferayVersion>6.2.1</liferayVersion>
                                 <pluginType>portlet</pluginType>
                         </configuration>
@@ -187,6 +187,6 @@
 	</dependencies>
 	<properties>
 		<liferay.version>6.2.1</liferay.version>
-		<liferay.auto.deploy.dir>C:\SeamfixCodes\Liferay\liferay-portal-6.2-ce-ga4-kycmanager\deploy</liferay.auto.deploy.dir>
+		<liferay.auto.deploy.dir>C:\DEV\DEVTOOLS\PortalFrameworks\LIFERAY\BLUE\Liferay-bundles\liferay-portal-6.2-ce-ga4-KYCManagerMTN\deploy</liferay.auto.deploy.dir>
 	</properties>
 </project>
