@@ -40,7 +40,7 @@ public class BiodataManagerDataService extends KycDS {
 
 		List<SearchResult> searchResult = new ArrayList<SearchResult>();
 
-		String hql = "SELECT s.firstname, s.surname, s.PHONE_NUMBER , s.UNIQUE_ID, s.RECEIPT_TIMESTAMP, s.id, s.SIM_SERIAL FROM biodata_demographics s WHERE s.id is not null ";
+		String hql = "SELECT s.firstname, s.surname, s.PHONE_NUMBER , s.UNIQUE_ID, s.RECEIPT_TIMESTAMP, s.id, s.SIM_SERIAL, s.mothersMaidenName FROM biodata_demographics s WHERE s.id is not null ";
 
 		String extraHql = "";
 
@@ -103,6 +103,7 @@ public class BiodataManagerDataService extends KycDS {
 						result.setRegistrationTimestamp((Timestamp) arr[4]);
 						result.setBasicDataId(((BigDecimal) arr[5]).longValue());
 						result.setSerialNumber(arr[6].toString());
+                                                result.setMothersMaidenName(arr[7] == null? "N/A" : arr[7].toString());
 
 						searchResult.add(result);
 					} catch (Exception e) {
@@ -314,6 +315,7 @@ public class BiodataManagerDataService extends KycDS {
 					results.add(new DemoObj("EMAIL", arr[13] == null ? "N/A" : arr[13].toString()));
 					results.add(new DemoObj("PHONE NUMBER", arr[27] == null ? "N/A" : arr[27].toString()));
 					results.add(new DemoObj("UNIQUE ID", arr[28] == null ? "N/A" : arr[28].toString()));
+                                        results.add(new DemoObj("MOTHERS MAIDEN NAME", arr[29] == null ? "N/A" : arr[29].toString()));
 					results.add(new DemoObj("CLIENT ID (KIT TAG)", arr[30] == null ? "N/A" : arr[30].toString()));
 
 					try {
