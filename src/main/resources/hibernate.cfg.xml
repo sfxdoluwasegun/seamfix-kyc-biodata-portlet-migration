@@ -5,15 +5,10 @@
 	<session-factory>
 		<property name="hibernate.connection.datasource">java:comp/env/jdbc/KycManagerServer</property>
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property> 
-		<property name="hibernate.default_schema">biocapture</property>
-
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		<property name="jdbc.batch_size">0</property>
 		<property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
 		<property name="hibernate.cache.use_query_cache">false</property>
-<!-- 		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
-		<property name="hibernate.cache.query_cache_factory">org.hibernate.cache.StandardQueryCacheFactory</property> -->
-
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">false</property>
 		<property name="use_sql_comments">false</property>
@@ -36,31 +31,29 @@
 		<mapping class="com.sf.biocapture.entity.Fault" />
 		<mapping class="com.sf.biocapture.entity.Device" />
 		<mapping class="com.sf.biocapture.entity.License" />
-		<mapping class="com.sf.biocapture.entity.LicenseQuota" />
 		<mapping class="com.sf.biocapture.entity.DeviceStatus" />
 		<mapping class="com.sf.biocapture.entity.DeviceType" />
 		<mapping class="com.sf.biocapture.entity.NodeManager" />
 		<mapping class="com.sf.biocapture.entity.EnrollmentLog" />
 		<mapping class="com.sf.biocapture.entity.EnrollmentRef" />
-		<mapping class="com.sf.biocapture.entity.DistrictManager" />
 		<mapping class="com.sf.biocapture.entity.KycDealer" />
 		<mapping class="com.sf.biocapture.entity.DealerType" />
 		<mapping class="com.sf.biocapture.entity.KitType" />
 		<mapping class="com.sf.biocapture.entity.NodeAssignment" />
 		<mapping class="com.sf.biocapture.entity.krm.MasterList" />
-		<mapping class="com.sf.biocapture.entity.FieldSupportAgent" />
 		<mapping class="com.sf.biocapture.entity.VendorType" />
-		<mapping class="com.sf.biocapture.entity.ZonalBusinessManager" />
 		<mapping class="com.sf.biocapture.entity.UserId" />
 		<mapping class="com.sf.biocapture.entity.Setting" />
 		<mapping class="com.sf.biocapture.entity.BasicData" />
 		<mapping class="com.sf.biocapture.entity.HeartBeat" />
-		<mapping class="com.sf.biocapture.entity.VerifiedBasicData" />
 		<mapping class="com.sf.biocapture.entity.SmsActivationRequest" />
 		<mapping class="com.sf.biocapture.entity.PhoneNumberStatus" />
 		<mapping class="com.sf.biocapture.entity.WsqImage" />
 		<mapping class="com.sf.biocapture.entity.security.KMUser" />
 		<mapping class="com.sf.biocapture.entity.security.KMRole" />
+                <mapping class="com.sf.biocapture.entity.security.KMUserHistory" />
+                <mapping class="com.sf.biocapture.entity.security.KMPrivilege"/>
+                <mapping class="com.sf.biocapture.entity.security.KMRolePrivilege" />
 		<mapping class="com.sf.biocapture.entity.PassportData"/>
 		<mapping class="com.sf.biocapture.entity.LicenseRequest"/>
 		<mapping class="com.sf.biocapture.entity.SpecialData"/>

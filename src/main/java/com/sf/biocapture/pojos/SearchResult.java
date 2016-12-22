@@ -10,19 +10,21 @@ public class SearchResult {
 	private Timestamp registrationTimestamp;
 	private Long basicDataId;
 	private String serialNumber;
+        private String mothersMaidenName;
 
 	public SearchResult() {
 
 	}
 
 	public SearchResult(String customerName, String phoneNumber, String uniqueId, Timestamp registrationTimestamp,
-			Long basicDataId, String serialNumber) {
+			Long basicDataId, String serialNumber, String mothersMaidenName) {
 		this.customerName = customerName;
 		this.phoneNumber = phoneNumber;
 		this.uniqueId = uniqueId;
 		this.registrationTimestamp = registrationTimestamp;
 		this.basicDataId = basicDataId;
 		this.setSerialNumber(serialNumber);
+                this.mothersMaidenName = mothersMaidenName;
 	}
 
 	public String getCustomerName() {
@@ -73,4 +75,11 @@ public class SearchResult {
 		this.serialNumber = serialNumber;
 	}
 
+        public String getMothersMaidenName() {
+            return mothersMaidenName;
+        }
+
+        public void setMothersMaidenName(String mothersMaidenName) {
+            this.mothersMaidenName = mothersMaidenName;
+        }
 }

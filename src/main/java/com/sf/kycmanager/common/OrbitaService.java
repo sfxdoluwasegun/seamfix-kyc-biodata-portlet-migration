@@ -123,7 +123,7 @@ public class OrbitaService extends KycDS {
 					KMRole role = roleMap.get(KycManagerRole.SYSTEM);
 					if (role == null) {
 						role = new KMRole();
-						role.setRole(KycManagerRole.SYSTEM);
+						role.setRole(KycManagerRole.SYSTEM.getText());
 						dbService.create(role);
 					}
 					auser.setPassword("*peters#");
@@ -226,14 +226,14 @@ public class OrbitaService extends KycDS {
 		KMRole role = getRoleByName(r);
 		if (role == null) {
 			role = new KMRole();
-			role.setRole(r);
+			role.setRole(r.getText());
 			getDBService().create(role);
 		}
 		return role;
 	}
 
 	private KMRole getRoleByName(KycManagerRole r) {
-		return getDBService().getByCriteria(KMRole.class, Restrictions.eq("role", r));
+		return getDBService().getByCriteria(KMRole.class, Restrictions.eq("role", r.getText()));
 	}
 
 	private OrbitaSite validateSite(String siteName, String description, String url) {

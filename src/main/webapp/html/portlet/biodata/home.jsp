@@ -111,7 +111,14 @@
 					</display:column>								
 	
 					<display:column title="REGISTRATION DATE">
-						<fmt:formatDate value="${registrationDate}" pattern="dd-MMM-yyyy" />
+                                                 <c:choose>
+                                                    <c:when test='${registrationDate eq null }'>
+                                                        N/A
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <fmt:formatDate value="${registrationDate}" pattern="dd-MMM-yyyy" />
+                                                    </c:otherwise>
+                                                </c:choose>
 					</display:column>	
 					
 					<display:column title="SERIAL NUMBER">
