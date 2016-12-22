@@ -5,6 +5,7 @@ import java.util.List;
 import com.sf.biocapture.entity.SmsActivationRequest;
 import com.sf.biocapture.pojos.SearchResult;
 import com.sf.lfa.core.InitialPortletState;
+import java.util.ArrayList;
 
 public class BiodataManagerInitialState implements InitialPortletState {
 
@@ -17,7 +18,8 @@ public class BiodataManagerInitialState implements InitialPortletState {
 	public BiodataManagerInitialState() {
 		super();
 		try {
-			data = dataService.getSomeTableContent(pageSize);
+			//data = dataService.getSomeTableContent(pageSize);
+                    data = new ArrayList<SearchResult>();
 		} catch (Exception e) {
 			
 		}
