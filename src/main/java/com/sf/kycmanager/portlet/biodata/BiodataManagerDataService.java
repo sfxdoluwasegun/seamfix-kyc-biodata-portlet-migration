@@ -97,12 +97,12 @@ public class BiodataManagerDataService extends KycDS {
 					try {
 
 						SearchResult result = new SearchResult();
-						result.setCustomerName(arr[1].toString() + " " + arr[0].toString());
-						result.setPhoneNumber(arr[2].toString());
-						result.setUniqueId(arr[3].toString());
-						result.setRegistrationTimestamp((Timestamp) arr[4]);
-						result.setBasicDataId(((BigDecimal) arr[5]).longValue());
-						result.setSerialNumber(arr[6].toString());
+						result.setCustomerName(arr[1] == null? " " : arr[1].toString() + " " + arr[0] == null? " " : arr[0].toString());
+						result.setPhoneNumber(arr[2] == null? "N/A" : arr[2].toString());
+						result.setUniqueId(arr[3] == null? "N/A" : arr[3].toString());
+						result.setRegistrationTimestamp(arr[4] == null ? null : (Timestamp) arr[4]);
+						result.setBasicDataId(arr[5] == null ? BigDecimal.ZERO.longValue() : ((BigDecimal) arr[5]).longValue());
+						result.setSerialNumber(arr[6] == null ? "N/A" : arr[6].toString());
                                                 result.setMothersMaidenName(arr[7] == null? "N/A" : arr[7].toString());
 
 						searchResult.add(result);
