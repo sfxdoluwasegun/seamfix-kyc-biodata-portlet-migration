@@ -40,7 +40,7 @@ public class BiodataManagerDataService extends KycDS {
 
 		List<SearchResult> searchResult = new ArrayList<SearchResult>();
 
-		String hql = "SELECT s.firstname, s.surname, s.PHONE_NUMBER , s.UNIQUE_ID, s.RECEIPT_TIMESTAMP, s.id, s.SIM_SERIAL FROM biodata_demographics s WHERE s.id is not null ";
+		String hql = "SELECT s.firstname, s.surname, s.PHONE_NUMBER , s.UNIQUE_ID, s.RECEIPT_TIMESTAMP, s.id, s.SIM_SERIAL, s.mothersMaidenName FROM biodata_demographics s WHERE s.id is not null ";
 
 		String extraHql = "";
 
@@ -49,8 +49,24 @@ public class BiodataManagerDataService extends KycDS {
 		}
 
 		if (name != null && !name.trim().equals("")) {
-			extraHql += " AND ((lower(s.firstname) like lower('%" + name + "%')) OR (lower(s.surname) like lower('%"
-					+ name + "%')))";
+                        String[] searchParam = name.split(" ");
+                        if(searchParam.length < 2){
+                        	name= name.toLowerCase();
+                            extraHql += " AND ((lower(s.firstname) like lower('%" + name + "%')) OR (lower(s.surname) like lower('%"+ name +"%')))";
+                        }else{
+                        	int count = 0;
+                        	for(String param:searchParam){
+                        		param = param.toLowerCase();
+                        		if(count == 0){
+                        			extraHql += " AND ((lower(s.firstname) like lower('%" + param + "%')) OR (lower(s.surname) like lower('%"+ param +"%')))";
+                        		}
+                        		else{
+                        			extraHql += " OR ((lower(s.firstname) like lower('%" + param + "%')) OR (lower(s.surname) like lower('%"+ param +"%')))";
+                        		}
+                        		count++;
+                        	}
+                        }
+			
 		}
 
 		if (uniqueId != null && !uniqueId.trim().equals("")) {
@@ -62,7 +78,13 @@ public class BiodataManagerDataService extends KycDS {
 
 		String query = hql + extraHql;
 
-		Object o = dbService.getBySQL(Object.class, query, null);
+		Object o = null;
+		try {
+			o = dbService.getBySQL(Object.class, query, null);
+		} catch (Exception e) {
+			logger.error("An Error Occurred fetching the Data", e);
+		}
+		
 
 		if ((o != null) && (o instanceof ArrayList)) {
 
@@ -75,12 +97,64 @@ public class BiodataManagerDataService extends KycDS {
 					try {
 
 						SearchResult result = new SearchResult();
-						result.setCustomerName(arr[1].toString() + " " + arr[0].toString());
-						result.setPhoneNumber(arr[2].toString());
-						result.setUniqueId(arr[3].toString());
-						result.setRegistrationTimestamp((Timestamp) arr[4]);
-						result.setBasicDataId(((BigDecimal) arr[5]).longValue());
-						result.setSerialNumber(arr[6].toString());
+						result.setCustomerName((arr[1] == null? " " : arr[1].toString()) + " " + (arr[0] == null? " " : arr[0].toString()));
+						result.setPhoneNumber(arr[2] == null? "N/A" : arr[2].toString());
+						result.setUniqueId(arr[3] == null? "N/A" : arr[3].toString());
+						result.setRegistrationTimestamp(arr[4] == null ? null : (Timestamp) arr[4]);
+						result.setBasicDataId(arr[5] == null ? BigDecimal.ZERO.longValue() : ((BigDecimal) arr[5]).longValue());
+						result.setSerialNumber(arr[6] == null ? "N/A" : arr[6].toString());
+                                                result.setMothersMaidenName(arr[7] == null? "N/A" : arr[7].toString());
+
+						searchResult.add(result);
+					} catch (Exception e) {
+						logger.error("Exception: ", e);
+					}
+				}
+			}
+
+		}
+
+		return searchResult;
+
+	}
+	
+	public List<SearchResult> getSomeTableContent( int pageSize) {
+
+		List<SearchResult> searchResult = new ArrayList<SearchResult>();
+
+		String hql = "SELECT s.firstname, s.surname, s.PHONE_NUMBER , s.UNIQUE_ID, s.RECEIPT_TIMESTAMP, s.id, s.SIM_SERIAL FROM biodata_demographics s WHERE s.id is not null ";
+
+		String extraHql = "";
+
+		extraHql += " AND rowNum <= " + pageSize + " ORDER BY s.RECEIPT_TIMESTAMP DESC ";
+
+		String query = hql + extraHql;
+
+		Object o = null;
+		try {
+			o = dbService.getBySQL(Object.class, query, null);
+		} catch (Exception e) {
+			logger.error("An Error Occurred fetching the Data", e);
+		}
+		
+
+		if ((o != null) && (o instanceof ArrayList)) {
+
+			ArrayList<Object> arrObject = (ArrayList<Object>) o;
+
+			for (ListIterator l = arrObject.listIterator(); l.hasNext();) {
+				Object obj = l.next();
+				if (obj instanceof Object[]) {
+					Object[] arr = (Object[]) obj;
+					try {
+
+						SearchResult result = new SearchResult();
+						result.setCustomerName((arr[1] == null ? " " : arr[1].toString()) + " " + (arr[0] == null? " " : arr[0].toString()));
+						result.setPhoneNumber(arr[2] == null ? " " :arr[2].toString());
+						result.setUniqueId(arr[3] == null? " " : arr[3].toString());
+						result.setRegistrationTimestamp(arr[4] == null ? null : (Timestamp) arr[4]);
+						result.setBasicDataId(arr[5] == null ? BigDecimal.ZERO.longValue() : ((BigDecimal) arr[5]).longValue());
+						result.setSerialNumber(arr[6] == null ? " " : arr[6].toString());
 
 						searchResult.add(result);
 					} catch (Exception e) {
@@ -241,6 +315,7 @@ public class BiodataManagerDataService extends KycDS {
 					results.add(new DemoObj("EMAIL", arr[13] == null ? "N/A" : arr[13].toString()));
 					results.add(new DemoObj("PHONE NUMBER", arr[27] == null ? "N/A" : arr[27].toString()));
 					results.add(new DemoObj("UNIQUE ID", arr[28] == null ? "N/A" : arr[28].toString()));
+                                        results.add(new DemoObj("MOTHERS MAIDEN NAME", arr[29] == null ? "N/A" : arr[29].toString()));
 					results.add(new DemoObj("CLIENT ID (KIT TAG)", arr[30] == null ? "N/A" : arr[30].toString()));
 
 					try {

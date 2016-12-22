@@ -34,7 +34,6 @@ public class BiodataManager extends SfPortlet<BiodataManagerState, BiodataManage
 	@ProcessAction(name = "gotoHomePage")
 	public void gotoHomePage(ActionRequest aReq, ActionResponse aRep) {
 		BiodataManagerState state = getState(aReq);
-
 		state.setBiodata(null);
 		state.setCurrentView(BiodataManagerViews.HOME);
 	}
@@ -68,27 +67,27 @@ public class BiodataManager extends SfPortlet<BiodataManagerState, BiodataManage
 	@ProcessAction(name = "searchBioData")
 	public void searchBioData(ActionRequest aReq, ActionResponse aRep) {
 
-		BiodataManagerDataService dataService = getDataService(aReq);
-		BiodataManagerState state = getState(aReq);
+            BiodataManagerDataService dataService = getDataService(aReq);
+            BiodataManagerState state = getState(aReq);
 
-		String phoneNumber = ParamUtil.getString(aReq, "phoneNumber", null);
-		String name = ParamUtil.getString(aReq, "name", null);
-		String uniqueID = ParamUtil.getString(aReq, "uniqueID", null);
+            String phoneNumber = ParamUtil.getString(aReq, "phoneNumber", null);
+            String name = ParamUtil.getString(aReq, "name", null);
+            String uniqueID = ParamUtil.getString(aReq, "uniqueID", null);
 
-		state.setPhoneNumber(phoneNumber);
-		state.setName(name);
-		state.setUniqueID(uniqueID);
+            state.setPhoneNumber(phoneNumber);
+            state.setName(name);
+            state.setUniqueID(uniqueID);
 
-		List<SearchResult> bioData = dataService.getTableContent(state.getPhoneNumber(), state.getName(),
-				state.getUniqueID(), state.getPageSize());
+            List<SearchResult> bioData = dataService.getTableContent(state.getPhoneNumber(), state.getName(),
+                            state.getUniqueID(), state.getPageSize());
 
-		if (bioData != null && !bioData.isEmpty()) {
-			state.setBiodata(bioData);
-		} else {
-			state.setBiodata(null);
-		}
+            if (bioData != null && !bioData.isEmpty()) {
+                    state.setBiodata(bioData);
+            } else {
+                    state.setBiodata(null);
+            }
 
-		state.setCurrentView(BiodataManagerViews.HOME);
+            state.setCurrentView(BiodataManagerViews.HOME);
 	}
 
 	@ProcessAction(name = "resetPageSize")

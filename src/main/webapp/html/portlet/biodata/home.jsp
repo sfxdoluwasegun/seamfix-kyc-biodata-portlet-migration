@@ -25,28 +25,28 @@
 <c:set var="contextPath" value='<%= response.encodeURL(request.getContextPath()) %>' /> 
 <c:set var="imagePath" value='<%= response.encodeURL(request.getContextPath()) + "/html/images/"%>' /> <!-- to get the image folder path -->
 
-		<div class="uk-grid" data-uk-grid-margin>
+	   <div class="uk-grid" data-uk-grid-margin>
            <div class="uk-width-large-1-1 uk-visible-large uk-row-first">
                	<div class="uk-panel">
               			<!-- Search -->
-					<form class="uk-form uk-margin" name="search" action="${searchBioDataURL}" method="post">
-	                    <fieldset data-uk-margin>
-	                        <legend>Search</legend>
-		                        <div class="uk-form-row">
-		                            <input type="text" name="name" class="uk-margin-small-top" placeholder="Enter name" value="${subscriberName}" />
-		                            <input type="number" max="99999999999" min="0" name="phoneNumber" class="uk-margin-small-top" placeholder="Enter phone number" value="${phoneNumber}" />
-		                            <input type="text" name="uniqueID" class="uk-margin-small-top" placeholder="Enter unique ID or Sim Serial" style="width: 350px" value="${uniqID}" />
-		                            <a class="uk-button uk-button-primary" title="Search" href="javascript:document.search.submit();"><i class="uk-icon-search"></i></a>                      
-		                        </div>
-	                    </fieldset>
-	                </form>
+                    <form class="uk-form uk-margin" name="search" action="${searchBioDataURL}" method="post">
+                        <fieldset data-uk-margin>
+                            <legend>Search</legend>
+                                    <div class="uk-form-row">
+                                        <input type="text" name="name" class="uk-margin-small-top" placeholder="Enter name" value="${subscriberName}" />
+                                        <input type="number" max="99999999999" min="0" name="phoneNumber" class="uk-margin-small-top" placeholder="Enter phone number" value="${phoneNumber}" />
+                                        <input type="text" name="uniqueID" class="uk-margin-small-top" placeholder="Enter unique ID or Sim Serial" style="width: 350px" value="${uniqID}" />
+                                        <a class="uk-button uk-button-primary" title="Search" href="javascript:document.search.submit();"><i class="uk-icon-search"></i></a>                      
+                                    </div>
+                        </fieldset>
+                    </form>
                	</div>
             </div>
         </div>
       
         <div style="clear:both"></div>
         
-    <c:choose>
+        <c:choose>
 		<c:when test="${portletState.biodata ne null}">
 			<c:set var="biodataList" value="${portletState.biodata}" />
 		</c:when>
@@ -111,7 +111,14 @@
 					</display:column>								
 	
 					<display:column title="REGISTRATION DATE">
-						<fmt:formatDate value="${registrationDate}" pattern="dd-MMM-yyyy" />
+                                                 <c:choose>
+                                                    <c:when test='${registrationDate eq null }'>
+                                                        N/A
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <fmt:formatDate value="${registrationDate}" pattern="dd-MMM-yyyy" />
+                                                    </c:otherwise>
+                                                </c:choose>
 					</display:column>	
 					
 					<display:column title="SERIAL NUMBER">
