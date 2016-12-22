@@ -97,7 +97,7 @@ public class BiodataManagerDataService extends KycDS {
 					try {
 
 						SearchResult result = new SearchResult();
-						result.setCustomerName(arr[1] == null? " " : arr[1].toString() + " " + arr[0] == null? " " : arr[0].toString());
+						result.setCustomerName((arr[1] == null? " " : arr[1].toString()) + " " + (arr[0] == null? " " : arr[0].toString()));
 						result.setPhoneNumber(arr[2] == null? "N/A" : arr[2].toString());
 						result.setUniqueId(arr[3] == null? "N/A" : arr[3].toString());
 						result.setRegistrationTimestamp(arr[4] == null ? null : (Timestamp) arr[4]);
@@ -149,7 +149,7 @@ public class BiodataManagerDataService extends KycDS {
 					try {
 
 						SearchResult result = new SearchResult();
-						result.setCustomerName(arr[1] == null ? " " : arr[1].toString() + " " + arr[0] == null? " " : arr[0].toString());
+						result.setCustomerName((arr[1] == null ? " " : arr[1].toString()) + " " + (arr[0] == null? " " : arr[0].toString()));
 						result.setPhoneNumber(arr[2] == null ? " " :arr[2].toString());
 						result.setUniqueId(arr[3] == null? " " : arr[3].toString());
 						result.setRegistrationTimestamp(arr[4] == null ? null : (Timestamp) arr[4]);
