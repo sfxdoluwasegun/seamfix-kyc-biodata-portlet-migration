@@ -171,7 +171,7 @@ public class BiodataManagerDataService extends KycDS {
 
 	public String getPassport(Long id) {
 
-		String sql = "SELECT * FROM PASSPORT p WHERE p.BASIC_DATA_FK = " + id;
+		String sql = "SELECT PASSPORT_DATA FROM PASSPORT p WHERE p.BASIC_DATA_FK = " + id;
 
 		Object o = dbService.getBySQL(Object.class, sql, null);
 
@@ -186,7 +186,9 @@ public class BiodataManagerDataService extends KycDS {
 				if (obj instanceof Object[]) {
 					Object[] arr = (Object[]) obj;
 					try {
-						Blob image = (Blob) arr[1];
+                                            
+						Blob image = (Blob) arr[0];
+                                            
 						// InputStream in = image.getBinaryStream();
 						// OutputStream out = new FileOutputStream("Text.png");
 						// IOUtils.copy(in, out);
