@@ -117,12 +117,12 @@
              <dependency>
                     <groupId>com.seamfix.model</groupId>
                     <artifactId>km-model</artifactId>
-                    <version>1.0.8-final</version>
+                    <version>1.7.4-FINAL</version>
             </dependency>
             <dependency>
                     <groupId>com.seamfix.model</groupId>
                     <artifactId>bs-model</artifactId>
-                    <version>1.2.4-final</version>
+                    <version>1.4.9-FINAL</version>
             </dependency>
             <dependency>
                     <groupId>org.hibernate</groupId>
