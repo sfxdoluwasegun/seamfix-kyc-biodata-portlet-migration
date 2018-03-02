@@ -58,6 +58,10 @@
 		<mapping class="com.sf.biocapture.entity.LicenseRequest"/>
 		<mapping class="com.sf.biocapture.entity.SpecialData"/>
                 <mapping class="com.sf.biocapture.entity.Territory"/>
+                <mapping class="com.sf.biocapture.entity.Area"/>
+                <mapping class="com.sf.biocapture.entity.Outlet"/>
+                <mapping class="com.sf.biocapture.entity.OutletType"/>
+                
 				
 		<listener class="org.hibernate.envers.event.AuditEventListener"
 			type="post-insert" />
