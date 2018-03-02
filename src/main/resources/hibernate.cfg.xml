@@ -62,6 +62,7 @@
                 <mapping class="com.sf.biocapture.entity.Outlet"/>
                 <mapping class="com.sf.biocapture.entity.OutletType"/>
                 <mapping class="com.sf.biocapture.entity.DeviceOwner"/>
+                <mapping class="com.sf.biocapture.entity.DealerDivision" />
                 
 				
 		<listener class="org.hibernate.envers.event.AuditEventListener"
