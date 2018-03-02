@@ -57,6 +57,7 @@
 		<mapping class="com.sf.biocapture.entity.PassportData"/>
 		<mapping class="com.sf.biocapture.entity.LicenseRequest"/>
 		<mapping class="com.sf.biocapture.entity.SpecialData"/>
+                <mapping class="com.sf.biocapture.entity.Territory"/>
 				
 		<listener class="org.hibernate.envers.event.AuditEventListener"
 			type="post-insert" />
