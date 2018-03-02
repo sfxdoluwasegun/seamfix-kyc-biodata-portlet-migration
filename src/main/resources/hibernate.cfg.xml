@@ -61,6 +61,7 @@
                 <mapping class="com.sf.biocapture.entity.Area"/>
                 <mapping class="com.sf.biocapture.entity.Outlet"/>
                 <mapping class="com.sf.biocapture.entity.OutletType"/>
+                <mapping class="com.sf.biocapture.entity.DeviceOwner"/>
                 
 				
 		<listener class="org.hibernate.envers.event.AuditEventListener"
